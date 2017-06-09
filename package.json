@@ -1,0 +1,14 @@
+{
+  "name": "stephendan",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "mustache": "^2.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js"
+  },
+  "description": "codeforgood packages"
+}
