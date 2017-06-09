@@ -1,4 +1,5 @@
 //Asking for the cloudant nodejs module and the URL needed to connect to the Cloudant instance.
+
 var express = require("express")
 var app = express();
 var nodeCache = require("node-cache");
@@ -39,3 +40,5 @@ app.get("/questions", function(req, res) {
       })
     });
 });
+
+app.listen(3000);
