@@ -7,18 +7,66 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <title>RNLI Check Chars</title>
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/style.css" rel="stylesheet">
-
+  <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
+  <script src="jquery.mustache.js"></script>
+  <script src="mustache.js"></script>
+  <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script>
+    var data = {
+      "_id": "5c956300ce24706fbc02eedf91b551b1",
+      "_rev": "1-5f38b2049a9207b8a1de913b896d13e1",
+      "section": "Sickness Evaluation",
+      "id": 2,
+      "question": "Assess Response: Are they Alert, Voice, Pain, Unresponsive?",
+      "answers": [{
+          "label": "Alert",
+          "next_id": 3,
+          "score": 0
+        },
+        {
+          "label": "Voice",
+          "next_id": 3,
+          "score": 0
+        },
+        {
+          "label": "Pain",
+          "next_id": 3,
+          "score": 2
+        },
+        {
+          "label": "Unresponsive",
+          "next_id": 3,
+          "score": 10
+        }
+      ]
+    };
+    var renderQuestion = function(options) {
+      $.Mustache.load('./templates.mustache')
+        .done(function() {
+          $('#responses').html($.Mustache.render('responses', options));
+          $('#question').html($.Mustache.render('question', options));
+          //$('.container').mustache('responses', options);
+        });
+    };
+
+    renderQuestion(data);
+  </script>
 </head>
 
 <body>
   <div class="container">
     <!-- Header -->
     <!-- Question -->
-    <!-- Buttons -->
+
+    <div id="question" class="row question">
+    </div>
+
+    <div class="navbar navbar-default navbar-fixed-bottom">
+      <div id="responses" class="row responses">
+      </div>
+    </div>
   </div>
 </body>
 
