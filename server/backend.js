@@ -1,4 +1,6 @@
 //Asking for the cloudant nodejs module and the URL needed to connect to the Cloudant instance.
+var express = require("express")
+var app = express();
 var nodeCache = require("node-cache");
 var myCache = new nodeCache();
 var Cloudant = require("cloudant");
@@ -16,20 +18,24 @@ var connection = Cloudant(dbURL, function(error, connection) {
 //Selecting the database to use through the previous callbacks connection variable and storing it.
 var databaseToQuery = connection.db.use("questions");
 
-databaseToQuery.find({
-    "selector": {
-      "id": {
-        "$gt": 0
+app.get("/questions", function(req, res) {
+  databaseToQuery.find({
+      "selector": {
+        "id": {
+          "$gt": 0
+        }
       }
-    }
-  },
-  function(error, data) {
-    if (error) return console.log(error);
-    //sending the result back as the response in json format.
-    console.log(data.docs);
-    myCache.set("questions", data.docs, function(error, success) {
-      if (success) {
-        console.log("questions been cached");
-      }
-    })
-  });
+    },
+    function(error, data) {
+      if (error) return console.log(error);
+      //sending the result back as the response in json format.
+      console.log(data.docs);
+      res.send(data.docs);
+      res.sendStatus(200);
+      myCache.set("questions", data.docs, function(error, success) {
+        if (success) {
+          console.log("questions been cached");
+        }
+      })
+    });
+});

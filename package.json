@@ -8,7 +8,8 @@
     "mustache-express": "^1.2.4",
     "node-cache": "^4.1.1",
     "node.js": "^0.0.0",
-    "speakable": "^0.4.0"
+    "speakable": "^0.4.0",
+    "watson-developer-cloud": "^2.32.1"
   },
   "devDependencies": {},
   "scripts": {
