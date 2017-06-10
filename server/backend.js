@@ -70,4 +70,18 @@ app.get("/questions", function(req, res) {
     });
 });
 
+app.get("/contents", function(req, res) {
+  databaseToQuery.find({
+      "selector": {
+        "id": "contents"
+      }
+    },
+    function(error, data) {
+      if (error) return console.log(error);
+      //sending the result back as the response in json format.
+      console.log(data.docs);
+      res.send(data.docs);
+    });
+});
+
 app.listen(3000);
