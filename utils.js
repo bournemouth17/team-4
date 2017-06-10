@@ -12,11 +12,13 @@ var rnliForms = function() {
     var path = "/rnli/" + date + "/" + responseTime + "/" + location + "/" + issue + "/" + comment;
     doRequest(apiUrl + path, "POST");
 };
+
 var renderQuestion = function(options) {
     $.Mustache.load('./templates.mustache')
         .done(function() {
             $('#content').html($.Mustache.render('question', options));
             $('#responses').html($.Mustache.render('responses', options));
+            $('#audioDiv').html($.Mustache.render('audio', options));
             $('#responses div').each(function() {
                 if ($(this).attr("score") != "0") {
                     $(this).find("a").addClass("btn-danger");
