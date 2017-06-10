@@ -2,7 +2,7 @@
   margin: 0 0 15px 0;
 }
 
-.responses > div {
+.responses>div {
   margin-top: 15px;
 }
 
@@ -21,10 +21,23 @@
   width: 100%;
 }
 
-.header {
+.header>img {
+  padding-top: 5px;
+}
+
+.navbar-header {
   background-color: #033677;
   height: 80px;
 }
-.header > img {
-  padding-top:5px;
+
+.navbar-brand {
+  padding: 5px 0 0 15px;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #fff;
+}
+
+.navbar-toggle {
+  margin-top: 22px;
 }

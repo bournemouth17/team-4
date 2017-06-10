@@ -156,7 +156,11 @@ var processQuestions = function(response) {
         var row = response[r];
         questions[row.id] = row;
     }
-    renderQuestion(questions["1"]);
+    showEval();
+};
+
+var showEval = function() {
+  renderQuestion(questions["1"]);
 };
 
 /**
