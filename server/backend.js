@@ -30,11 +30,10 @@ var allowCrossDomain = function(req, res, next) {
 app.use(allowCrossDomain);
 
 
-app.post("/rnli/:id/:timestamp/:responseTime/:location/:issue", function(req, res) {
+app.post("/rnli/:timestamp/:responseTime/:location/:issue", function(req, res) {
   databaseToQuery = connection.db.use("responses");
 	console.log(JSON.stringify(req.params));
   databaseToQuery.insert({
-		  "id": req.params.id,
       "timestamp": req.params.timestamp,
       "responseTime": req.params.responseTime,
       "location": req.params.location,

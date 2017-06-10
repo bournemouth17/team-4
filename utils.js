@@ -2,7 +2,16 @@ var apiUrl = "http://localhost:3000";
 var score = 0;
 var questions = {};
 var menuItems = [];
-
+var rnliForms = function() {
+    debugger;
+    var issue = $("#Issue").val();
+    var location = $("#Location").val();
+    var comment = $("#comments").val();
+    var responseTime = $("#ResponseTime").val();
+    var date = $("#Date").val();
+    var path = "/rnli/" + date + "/" + responseTime + "/" + location + "/" + issue + "/" + comment;
+    doRequest(apiUrl + path, "POST");
+};
 var renderQuestion = function(options) {
     $.Mustache.load('./templates.mustache')
         .done(function() {
@@ -41,7 +50,7 @@ var renderMenu = function(categoryID) {
             } else {
                 options["menuItems"] = menuItems;
             }
-            
+
             $('#content').html($.Mustache.render('contents', options));
             $('#responses').html("");
             if (categoryID) {
@@ -75,6 +84,8 @@ var doEvaluation = function() {
             };
 
             $('#content').html($.Mustache.render('evaluation', options));
+                        $('#test').html($.Mustache.render('rnliForm', options));
+
             $('#responses').html($.Mustache.render('next', options));
             $('#responses div').each(function() {
                 $(this).click(function() {

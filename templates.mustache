@@ -12,21 +12,22 @@
   <h1>{{question}}</h1>
 </script>
 <script id="rnliForm" type="text/html">
-  <form >/rnli/:id/:timestamp/:responseTime/:location/:issue
+  <form >
     Date:<br>
-    <input type="text" name="Date" value="Mouse">
+    <input type="date" id="Date" value="26/07/2017">
     ResponseTime(mins):<br>
-    <input type="number" name="ResponseTime" value="Mickey">
+    <input type="number" id="ResponseTime">
     <br>
     Location:<br>
-    <input type="text" name="Location" value="Mouse">
+    <input type="text" id="Location" >
     <br><br>
     Issue:<br>
-    <input type="text" name="Issue" value="Mouse">
+    <input type="text" id="Issue" >
     Comments:<br>
-    <input type="text" name="comments" value="Mouse">
-    <input type="submit" value="Submit">
+    <input type="text" id="comments">
+    <input type="submit" value="Submit" onClick="rnliForms();">
   </form>
+
 </script>
 
 <script id="contents" type="text/html">
