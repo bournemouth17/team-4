@@ -27,6 +27,7 @@ var renderQuestion = function(question) {
         .done(function() {
             $('#content').html($.Mustache.render('question', question));
             $('#responses').html($.Mustache.render('responses', question));
+            $('#audioDiv').html($.Mustache.render('audio', question));
             $('#responses div').each(function() {
                 if ($(this).attr("score") != "0") {
                     //If the response has a non-zero score, highlight it as red for colour coding of fields
@@ -82,7 +83,7 @@ var renderMenu = function(categoryID) {
 
             $('#content').html($.Mustache.render('contents', options));
             $('#responses').html("");
-            
+
             if (categoryID) {
                 $('#content li').each(function() {
                     $(this).click(function() {

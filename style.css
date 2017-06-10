@@ -12,15 +12,19 @@
 }
 
 .question {
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
   align-items: center;
 }
 
-.menu {
+.fullWidth {
   width: 100%;
 }
 
-form {
-  width: 100%;
+.header {
+  background-color: #033677;
+  height: 80px;
+}
+.header > img {
+  padding-top:5px;
 }

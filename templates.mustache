@@ -12,7 +12,7 @@
   <h1>{{question}}</h1>
 </script>
 <script id="patientData" type="text/html">
-  <form >
+  <form class="fullWidth">
     <label for="Date">Date:</label>
     <input class="form-control input-lg" type="date" id="Date" value="26/07/2017"><br />
 
@@ -43,7 +43,7 @@
 
 
 <script id="contents" type="text/html">
-  <ul class="menu nav nav-pills nav-stacked">
+  <ul class="fullWidth nav nav-pills nav-stacked">
     {{#menuItems}}
       <li role="presentation" id="{{id}}" nextid="{{next_id}}"><a><h2>{{label}}</h2></a></ld>
     {{/menuItems}}
