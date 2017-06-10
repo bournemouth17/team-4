@@ -42,7 +42,7 @@ var renderQuestion = function(question) {
                     if (nextID == "EVAL") { //If we have reached the end of the evaluation, render the result
                         doEvaluation();
                     } else if (nextID == "PATIENT_FORM") {
-                        renderPatientForm();
+                        renderTemplate('patientData','patientDataSubmit');
                     } else {
                         renderQuestion(questions[nextID]);
                     }
@@ -51,16 +51,26 @@ var renderQuestion = function(question) {
         });
 };
 
+
 /**
  * Renders the UI for the for the patient data input form
  */
-var renderPatientForm = function() {
-    $.Mustache.load('./templates.mustache')
-        .done(function() {
-            $('#content').html($.Mustache.render('patientData'));
-            $('#responses').html($.Mustache.render('patientDataSubmit'));
-        });
+var renderTemplate = function(contentId, footerId) {
+  $.Mustache.load('./templates.mustache')
+    .done(function() {
+      if (contentId) {
+        $('#content').html($.Mustache.render(contentId));
+      } else {
+        $('#content').html("");
+      }
+      if (footerId) {
+        $('#responses').html($.Mustache.render(footerId));
+      } else {
+        $('#responses').html("");
+      }
+    });
 };
+
 
 /**
  * Renders the menu to access category specific cards
