@@ -3,7 +3,6 @@ var score = 0;
 var questions = {};
 var menuItems = [];
 var rnliForms = function() {
-    debugger;
     var issue = $("#Issue").val();
     var location = $("#Location").val();
     var comment = $("#comments").val();
@@ -12,13 +11,11 @@ var rnliForms = function() {
     var path = "/rnli/" + date + "/" + responseTime + "/" + location + "/" + issue + "/" + comment;
     doRequest(apiUrl + path, "POST");
 };
-
 var renderQuestion = function(options) {
     $.Mustache.load('./templates.mustache')
         .done(function() {
             $('#content').html($.Mustache.render('question', options));
             $('#responses').html($.Mustache.render('responses', options));
-            $('#audioDiv').html($.Mustache.render('audio', options));
             $('#responses div').each(function() {
                 if ($(this).attr("score") != "0") {
                     $(this).find("a").addClass("btn-danger");
@@ -30,11 +27,22 @@ var renderQuestion = function(options) {
                     var nextID = $(this).attr("nextid");
                     if (nextID == "EVAL") {
                         doEvaluation();
+                    } else if (nextID == "PATIENT_FORM") {
+                        renderPatientForm();
                     } else {
                         renderQuestion(questions[nextID]);
                     }
                 });
             });
+        });
+};
+
+var renderPatientForm = function() {
+
+    $.Mustache.load('./templates.mustache')
+        .done(function() {
+              $('#content').html($.Mustache.render('patientData'));
+              $('#responses').html($.Mustache.render('patientDataSubmit'));
         });
 };
 
@@ -86,7 +94,7 @@ var doEvaluation = function() {
             };
 
             $('#content').html($.Mustache.render('evaluation', options));
-                        $('#test').html($.Mustache.render('rnliForm', options));
+            $('#test').html($.Mustache.render('rnliForm', options));
 
             $('#responses').html($.Mustache.render('next', options));
             $('#responses div').each(function() {

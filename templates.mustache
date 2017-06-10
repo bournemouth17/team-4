@@ -11,23 +11,27 @@
 <script id="question" type="text/html">
   <h1>{{question}}</h1>
 </script>
-<script id="rnliForm" type="text/html">
+<script id="patientData" type="text/html">
   <form >
-    Date:<br>
-    <input type="date" id="Date" value="26/07/2017">
-    ResponseTime(mins):<br>
-    <input type="number" id="ResponseTime">
-    <br>
-    Location:<br>
-    <input type="text" id="Location" >
-    <br><br>
-    Issue:<br>
-    <input type="text" id="Issue" >
-    Comments:<br>
-    <input type="text" id="comments">
-    <input type="submit" value="Submit" onClick="rnliForms();">
-  </form>
+    <label for="Date">Date:</label>
+    <input class="form-control input-lg" type="date" id="Date" value="26/07/2017"><br />
 
+    <label for="ResponseTime">Response Time (minutes):</label>
+    <input class="form-control input-lg" type="number" id="ResponseTime"><br />
+
+    <label for="Location">Location:</label>
+    <input class="form-control input-lg" type="text" id="Location" ><br />
+
+    <label for="Issue">Issue:</label>
+    <textarea  class="form-control input-lg" id="Issue"/><br />
+
+    <label for="comments">Comments:</label>
+    <textarea  class="form-control input-lg" id="comments"/><br />
+  </form>
+</script>
+
+<script id="patientDataSubmit" type="text/html">
+  <div class="col-xs-12"><a onClick="rnliForms()" class="btn btn-block btn-lg btn-success">Submit</a></div>
 </script>
 
 <script id="audio" type="text/html">
