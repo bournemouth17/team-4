@@ -1,10 +1,25 @@
 <script id="responses" type="text/html">
   {{#answers}}
-    <div class="col-xs-6" score="{{score}}" nextId="{{next_id}}"><a class="btn-success btn btn-block btn-lg">{{label}}</a></div>
-    <!-- <div class="col-xs-6" ><a class="btn-danger btn btn-block btn-lg">{{label}}</a></div> -->
+    <div class="col-xs-6" score="{{score}}" nextId="{{next_id}}"><a class="btn btn-block btn-lg">{{label}}</a></div>
   {{/answers}}
 </script>
 
-<script id="question" type="text/html">=
+<script id="next" type="text/html">
+  <div class="col-xs-12" nextId="{{next_id}}"><a class="btn btn-block btn-lg btn-success">Next</a></div>
+</script>
+
+<script id="question" type="text/html">
   <h1>{{question}}</h1>
+</script>
+
+<script id="contents" type="text/html">
+  <ul class="menu nav nav-pills nav-stacked">
+    {{#menuItems}}
+      <li role="presentation" id="{{id}}" nextid="{{next_id}}"><a><h2>{{label}}</h2></a></ld>
+    {{/menuItems}}
+  </ul>
+</script>
+
+<script id="evaluation" type="text/html">
+  <h1>Patient is {{status}}</h1>
 </script>

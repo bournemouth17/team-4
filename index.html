@@ -13,46 +13,7 @@
         <script src="jquery.mustache.js"></script>
         <script src="mustache.js"></script>
         <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script>
-            var apiUrl = "http://localhost:3000";
-            var questions = {};
-
-            var renderQuestion = function(options) {
-                $.Mustache.load('./templates.mustache')
-                    .done(function() {
-                        $('#responses').html($.Mustache.render('responses', options));
-                        $('#question').html($.Mustache.render('question', options));
-                        //$('.container').mustache('responses', options);
-                    });
-            };
-
-
-            var doRequest = function(targetUrl, method, callback) {
-                var xmlReq = new XMLHttpRequest();
-                xmlReq.onreadystatechange = function() {
-                    if (xmlReq.readyState == 4 && xmlReq.status == 200) {
-                        callback(xmlReq.responseText);
-                    }
-                }
-                xmlReq.open(method, targetUrl, true);
-                xmlReq.send(null);
-            };
-
-
-
-            var processResults = function(response) {
-                response = JSON.parse(response);
-                for (var r in response) {
-                    var row = response[r];
-                    questions[row.id] = row;
-                }
-                console.log(JSON.stringify(questions));
-                renderQuestion(questions["1"]);
-            };
-
-            doRequest(apiUrl + "/questions", "GET", processResults);
-
-        </script>
+        <script src="utils.js"></script>
     </head>
 
     <body>
@@ -60,7 +21,7 @@
             <!-- Header -->
             <!-- Question -->
 
-            <div id="question" class="row question">
+            <div id="content" class="row question">
             </div>
 
             <div class="navbar navbar-default navbar-fixed-bottom">
