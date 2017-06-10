@@ -1,5 +1,5 @@
 //Asking for the cloudant nodejs module and the URL needed to connect to the Cloudant instance.
-
+//List of needed modules
 var express = require("express")
 var app = express();
 var nodeCache = require("node-cache");
@@ -18,7 +18,7 @@ var connection = Cloudant(dbURL, function(error, connection) {
 });
 //Selecting the database to use through the previous callbacks connection variable and storing it.
 var databaseToQuery = connection.db.use("questions");
-
+//Allows cross origin requests, security feature that prevents requests coming from unauthorised servers.
 var allowCrossDomain = function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
@@ -28,8 +28,8 @@ var allowCrossDomain = function(req, res, next) {
 }
 
 app.use(allowCrossDomain);
-
-
+//ASYNC Calls backs
+//function writes to the databsase the information fromthe rnli debrief form
 app.post("/rnli/:timestamp/:responseTime/:location/:issue", function(req, res) {
   databaseToQuery = connection.db.use("responses");
 	console.log(JSON.stringify(req.params));
@@ -47,7 +47,7 @@ app.post("/rnli/:timestamp/:responseTime/:location/:issue", function(req, res) {
 			res.sendStatus(200);
     });
 });
-
+//retrieves the questions for the evaluation and caches them should they be accessed again.updates chace everytime its called.
 app.get("/questions", function(req, res) {
   databaseToQuery.find({
   "selector": {
@@ -69,7 +69,7 @@ app.get("/questions", function(req, res) {
       })
     });
 });
-
+//retrieves the list of contents pages
 app.get("/contents", function(req, res) {
   databaseToQuery.find({
       "selector": {
