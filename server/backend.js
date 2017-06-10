@@ -51,12 +51,13 @@ app.post("/rnli/:id/:timestamp/:responseTime/:location/:issue", function(req, re
 
 app.get("/questions", function(req, res) {
   databaseToQuery.find({
-      "selector": {
-        "id": {
-          "$gt": 0
-        }
-      }
-    },
+  "selector": {
+    "id": {
+      "$and":[{"$gt":0},{"$ne":"contents"}]
+
+    }
+  }
+},
     function(error, data) {
       if (error) return console.log(error);
       //sending the result back as the response in json format.
